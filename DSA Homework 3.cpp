@@ -22,21 +22,41 @@
 using namespace std;
 
 template <typename T> class Vertex {
-
+public:
     T value;
+    int index;
+    Vertex<T>* previous;
+    Vertex<T>* next;
+
+    Vertex<T>() = default;
+
+    Vertex<T>(T value) {
+        this->value = value;
+    }
 
 };
 
 
 template <typename T> class Edge {
-
+public:
     T weight;
+
+    Edge<T>* previous;
+    Edge<T>* next;
+
+    Edge<T>() = default;
+
+    Edge<T>(T weight) {
+        this->weight = weight;
+    }
+
 
 };
 
 template <typename V, typename E> class GraphADT {
 
-    virtual Vertex<V>* addVertex(V vertex) = 0;
+public:
+    virtual Vertex<V>* addVertex(V value) = 0;
     virtual void removeVertex(Vertex<V>* vertex) = 0;
     virtual Edge<E>* addEdge(Vertex<V>* from, Vertex<V>* to, E weight) = 0;
     virtual void removeEdge(Edge<E>* edge) = 0;
@@ -51,13 +71,78 @@ template <typename V, typename E> class GraphADT {
 
 template <typename V, typename E> class AdjacencyMatrixGraph : public GraphADT<V, E>{
 
+    list<Vertex<V>> vertices;
+    list<Edge<E>> edges;
+    vector<vector<Edge<E>*>> adjMatr;
+
+    Vertex<V> firstVertex_ptr;
+    Vertex<V> lastVertex_ptr;
+
+    Edge<E> firstEdge_ptr;
+    Edge<E> lastEdge_ptr;
+
+    bool verticesList_isEmpty;
+    bool edgesList_isEmpty;
+
+public:
+
+    AdjacencyMatrixGraph<V,E>(){
+        
+        verticesList_isEmpty = true;
+        edgesList_isEmpty = true;
+    }
+
+
+    Vertex<V>* addVertex(V value) {
+        
+        if (verticesList_isEmpty == true) {
+            Vertex<V>* temp = new Vertex<V>(value);
+            verticesList_isEmpty = false;
+            temp->previous = &firstVertex_ptr;
+            temp->next = &lastVertex_ptr;
+            firstVertex_ptr.next = temp;
+            lastVertex_ptr.previous = temp;
+        }
+        else {
+            Vertex<V>* temp = new Vertex<V>(value);
+            temp->previous = lastVertex_ptr.previous;
+            temp->next = &lastVertex_ptr;
+            lastVertex_ptr.previous->next = temp;
+            lastVertex_ptr.previous = temp;
+        }
+
+    };
+
+
 };
 
 
 
 int main() {
 
-    
+    Vertex<int> a;
+    a.index = 0;
+    Vertex<int> b;
+    b.index = 1;
+
+    list<Vertex<int>> kek;
+
+    kek.push_back(a);
+    kek.push_back(b);
+
+    //kek.back().ptr = &kek.back();
+
+    kek.pop_front();
+
+    Vertex<int>* x = new Vertex<int>;
+
+    x->index = 7;
+
+    cout << x->index;
+
+    delete(x);
+
+
 
     return 0;
 
