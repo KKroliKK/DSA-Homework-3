@@ -124,6 +124,7 @@ public:
             for (int i = 0; i < adjMatr.size(); ++i) {
                 adjMatr[i].push_back(nullptr);
             }
+
             adjMatr.push_back(vector<Edge<V, E>*>());
             for (int i = 0; i < adjMatr.size(); ++i) {
                 adjMatr[adjMatr.size() - 1].push_back(nullptr);
@@ -168,6 +169,21 @@ public:
         return temp;
     }
 
+
+    void removeEdge(Edge<V, E>* edge) {
+
+        adjMatr[edge->from->index][edge->to->index] = nullptr;
+
+        Edge<V, E>* previous = edge->previous;
+        Edge<V, E>* next = edge->next;
+
+        previous->next = next;
+        next->previous = previous;
+
+        delete(edge);
+    }
+
+
 };
 
 
@@ -181,6 +197,7 @@ int main() {
     Vertex<char>* c = graph.addVertex('C');
 
     Edge<char, int>* ab = graph.addEdge(a, b, 1);
+    graph.removeEdge(ab);
 
     return 0;
 

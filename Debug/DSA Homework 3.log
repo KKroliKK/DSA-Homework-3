@@ -6,11 +6,11 @@ C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp
           [
               V=char
           ]
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(179): message : выполняется компиляция ссылки на экземпляр шаблон функции "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(195): message : выполняется компиляция ссылки на экземпляр шаблон функции "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
           with
           [
               V=char
           ]
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(177): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "AdjacencyMatrixGraph<char,int>"
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(128,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(193): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "AdjacencyMatrixGraph<char,int>"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(129,31): warning C4018: <: несоответствие типов со знаком и без знака
   DSA Homework 3.vcxproj -> C:\Users\Пользователь\source\repos\DSA Homework 3\Debug\DSA Homework 3.exe
