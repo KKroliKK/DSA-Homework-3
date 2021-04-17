@@ -27,6 +27,7 @@ public:
     int index;
     Vertex<V>* previous;
     Vertex<V>* next;
+    Vertex<V>* myself;
 
     Vertex<V>() = default;
 
@@ -43,6 +44,7 @@ public:
 
     Edge<V, E>* previous;
     Edge<V, E>* next;
+    Edge<V, E>* myself;
 
     Vertex<V>* from;
     Vertex<V>* to;
@@ -132,6 +134,8 @@ public:
             emptyIndices.pop_back();
         }
 
+        temp->myself = temp;
+
         return temp;
     }
 
@@ -159,8 +163,9 @@ public:
 
         adjMatr[from->index][to->index] = temp;
 
-        return temp;
+        temp->myself = temp;
 
+        return temp;
     }
 
 };
