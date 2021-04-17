@@ -1,16 +1,16 @@
 ﻿  DSA Homework 3.cpp
   The contents of <concepts> are available only with C++20 concepts support.
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(119,31): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(98): message : во время компиляции функции-члена класс шаблон "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(122,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(101): message : во время компиляции функции-члена класс шаблон "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
           with
           [
               V=char
           ]
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(150): message : выполняется компиляция ссылки на экземпляр шаблон функции "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(174): message : выполняется компиляция ссылки на экземпляр шаблон функции "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
           with
           [
               V=char
           ]
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(149): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "AdjacencyMatrixGraph<char,int>"
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(123,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(172): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "AdjacencyMatrixGraph<char,int>"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(126,31): warning C4018: <: несоответствие типов со знаком и без знака
   DSA Homework 3.vcxproj -> C:\Users\Пользователь\source\repos\DSA Homework 3\Debug\DSA Homework 3.exe

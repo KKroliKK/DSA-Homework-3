@@ -21,32 +21,35 @@
 
 using namespace std;
 
-template <typename T> class Vertex {
+template <typename V> class Vertex {
 public:
-    T value;
+    V value;
     int index;
-    Vertex<T>* previous;
-    Vertex<T>* next;
+    Vertex<V>* previous;
+    Vertex<V>* next;
 
-    Vertex<T>() = default;
+    Vertex<V>() = default;
 
-    Vertex<T>(T value) {
+    Vertex<V>(V value) {
         this->value = value;
     }
 
 };
 
 
-template <typename T> class Edge {
+template <typename V, typename E> class Edge {
 public:
-    T weight;
+    E weight;
 
-    Edge<T>* previous;
-    Edge<T>* next;
+    Edge<V, E>* previous;
+    Edge<V, E>* next;
 
-    Edge<T>() = default;
+    Vertex<V>* from;
+    Vertex<V>* to;
 
-    Edge<T>(T weight) {
+    Edge<V, E>() = default;
+
+    Edge<V, E>(E weight) {
         this->weight = weight;
     }
 
@@ -58,12 +61,12 @@ template <typename V, typename E> class GraphADT {
 public:
     virtual Vertex<V>* addVertex(V value) = 0;
     virtual void removeVertex(Vertex<V>* vertex) = 0;
-    virtual Edge<E>* addEdge(Vertex<V>* from, Vertex<V>* to, E weight) = 0;
-    virtual void removeEdge(Edge<E>* edge) = 0;
-    virtual vector<Edge<E>*> edgesFrom(Vertex<V>* vertex) = 0;
-    virtual vector<Edge<E>*> edgesTo(Vertex<V>* vertex) = 0;
+    virtual Edge<V, E>* addEdge(Vertex<V>* from, Vertex<V>* to, E weight) = 0;
+    virtual void removeEdge(Edge<V, E>* edge) = 0;
+    virtual vector<Edge<V, E>*> edgesFrom(Vertex<V>* vertex) = 0;
+    virtual vector<Edge<V, E>*> edgesTo(Vertex<V>* vertex) = 0;
     virtual Vertex<V>* findVertex(V value) = 0;
-    virtual Edge<E>* findEdge(V from_value, V to_value) = 0;
+    virtual Edge<V, E>* findEdge(V from_value, V to_value) = 0;
     virtual bool hasEdge(Vertex<V>* from, Vertex<V>* to) = 0;
 
 };
@@ -72,16 +75,16 @@ public:
 template <typename V, typename E> class AdjacencyMatrixGraph /*: public GraphADT<V, E>*/{
 
     list<Vertex<V>> vertices;
-    list<Edge<E>> edges;
-    vector<vector<Edge<E>*>> adjMatr;
+    list<Edge<V, E>> edges;
+    vector<vector<Edge<V, E>*>> adjMatr;
 
     Vertex<V> firstVertex_ptr;
     Vertex<V> lastVertex_ptr;
 
     vector<int> emptyIndices;
 
-    Edge<E> firstEdge_ptr;
-    Edge<E> lastEdge_ptr;
+    Edge<V, E> firstEdge_ptr;
+    Edge<V, E> lastEdge_ptr;
 
     bool verticesList_isEmpty;
     bool edgesList_isEmpty;
@@ -119,7 +122,7 @@ public:
             for (int i = 0; i < adjMatr.size(); ++i) {
                 adjMatr[i].push_back(nullptr);
             }
-            adjMatr.push_back(vector<Edge<E>*>());
+            adjMatr.push_back(vector<Edge<V, E>*>());
             for (int i = 0; i < adjMatr.size(); ++i) {
                 adjMatr[adjMatr.size() - 1].push_back(nullptr);
             }
@@ -133,11 +136,31 @@ public:
     }
 
 
-    Edge<E>* addEdge(Vertex<V>* from, Vertex<V>* to, E weight) {
+    Edge<V, E>* addEdge(Vertex<V>* from, Vertex<V>* to, E weight) {
 
+        Edge<V, E>* temp = new Edge<V, E>(weight);
 
+        if (edgesList_isEmpty == true) {
+            edgesList_isEmpty = false;
+            temp->previous = &firstEdge_ptr;
+            temp->next = &lastEdge_ptr;
+            firstEdge_ptr.next = temp;
+            lastEdge_ptr.previous = temp;
+        }
+        else {
+            temp->previous = lastEdge_ptr.previous;
+            temp->next = &lastEdge_ptr;
+            lastEdge_ptr.previous->next = temp;
+            lastEdge_ptr.previous = temp;
+        }
 
-        return NULL;
+        temp->from = from;
+        temp->to = to;
+
+        adjMatr[from->index][to->index] = temp;
+
+        return temp;
+
     }
 
 };
@@ -147,9 +170,12 @@ public:
 int main() {
 
     AdjacencyMatrixGraph<char, int> graph;
-    graph.addVertex('A');
-    graph.addVertex('B');
-    graph.addVertex('C');
+
+    Vertex<char>* a = graph.addVertex('A');
+    Vertex<char>* b = graph.addVertex('B');
+    Vertex<char>* c = graph.addVertex('C');
+
+    Edge<char, int>* ab = graph.addEdge(a, b, 1);
 
     return 0;
 
