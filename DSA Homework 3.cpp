@@ -69,7 +69,7 @@ public:
 };
 
 
-template <typename V, typename E> class AdjacencyMatrixGraph : public GraphADT<V, E>{
+template <typename V, typename E> class AdjacencyMatrixGraph /*: public GraphADT<V, E>*/{
 
     list<Vertex<V>> vertices;
     list<Edge<E>> edges;
@@ -77,6 +77,8 @@ template <typename V, typename E> class AdjacencyMatrixGraph : public GraphADT<V
 
     Vertex<V> firstVertex_ptr;
     Vertex<V> lastVertex_ptr;
+
+    vector<int> emptyIndices;
 
     Edge<E> firstEdge_ptr;
     Edge<E> lastEdge_ptr;
@@ -95,8 +97,9 @@ public:
 
     Vertex<V>* addVertex(V value) {
         
+        Vertex<V>* temp = new Vertex<V>(value);
+
         if (verticesList_isEmpty == true) {
-            Vertex<V>* temp = new Vertex<V>(value);
             verticesList_isEmpty = false;
             temp->previous = &firstVertex_ptr;
             temp->next = &lastVertex_ptr;
@@ -104,15 +107,38 @@ public:
             lastVertex_ptr.previous = temp;
         }
         else {
-            Vertex<V>* temp = new Vertex<V>(value);
             temp->previous = lastVertex_ptr.previous;
             temp->next = &lastVertex_ptr;
             lastVertex_ptr.previous->next = temp;
             lastVertex_ptr.previous = temp;
         }
 
-    };
+        if (emptyIndices.empty()) {
+            temp->index = adjMatr.size();
 
+            for (int i = 0; i < adjMatr.size(); ++i) {
+                adjMatr[i].push_back(nullptr);
+            }
+            adjMatr.push_back(vector<Edge<E>*>());
+            for (int i = 0; i < adjMatr.size(); ++i) {
+                adjMatr[adjMatr.size() - 1].push_back(nullptr);
+            }
+        }
+        else {
+            temp->index = emptyIndices.back();
+            emptyIndices.pop_back();
+        }
+
+        return temp;
+    }
+
+
+    Edge<E>* addEdge(Vertex<V>* from, Vertex<V>* to, E weight) {
+
+
+
+        return NULL;
+    }
 
 };
 
@@ -120,29 +146,10 @@ public:
 
 int main() {
 
-    Vertex<int> a;
-    a.index = 0;
-    Vertex<int> b;
-    b.index = 1;
-
-    list<Vertex<int>> kek;
-
-    kek.push_back(a);
-    kek.push_back(b);
-
-    //kek.back().ptr = &kek.back();
-
-    kek.pop_front();
-
-    Vertex<int>* x = new Vertex<int>;
-
-    x->index = 7;
-
-    cout << x->index;
-
-    delete(x);
-
-
+    AdjacencyMatrixGraph<char, int> graph;
+    graph.addVertex('A');
+    graph.addVertex('B');
+    graph.addVertex('C');
 
     return 0;
 
