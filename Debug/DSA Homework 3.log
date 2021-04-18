@@ -1,7 +1,22 @@
 ﻿  DSA Homework 3.cpp
   The contents of <concepts> are available only with C++20 concepts support.
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(262,23): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(263,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(301,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(302,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(286,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(282): message : во время компиляции функции-члена класс шаблон "Edge<V,E> *AdjacencyMatrixGraph<V,E>::findEdge(V,V)"
+          with
+          [
+              V=char,
+              E=int
+          ]
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(346): message : выполняется компиляция ссылки на экземпляр шаблон функции "Edge<V,E> *AdjacencyMatrixGraph<V,E>::findEdge(V,V)"
+          with
+          [
+              V=char,
+              E=int
+          ]
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(301): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "AdjacencyMatrixGraph<char,int>"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(287,31): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(233,27): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(229): message : во время компиляции функции-члена класс шаблон "std::vector<Edge<V,E> *,std::allocator<Edge<V,E> *>> AdjacencyMatrixGraph<V,E>::edgesTo(Vertex<V> *)"
           with
@@ -9,13 +24,12 @@ C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp
               V=char,
               E=int
           ]
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(299): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::vector<Edge<V,E> *,std::allocator<Edge<V,E> *>> AdjacencyMatrixGraph<V,E>::edgesTo(Vertex<V> *)"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(342): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::vector<Edge<V,E> *,std::allocator<Edge<V,E> *>> AdjacencyMatrixGraph<V,E>::edgesTo(Vertex<V> *)"
           with
           [
               V=char,
               E=int
           ]
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(262): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "AdjacencyMatrixGraph<char,int>"
 C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(220,27): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(216): message : во время компиляции функции-члена класс шаблон "std::vector<Edge<V,E> *,std::allocator<Edge<V,E> *>> AdjacencyMatrixGraph<V,E>::edgesFrom(Vertex<V> *)"
           with
@@ -23,19 +37,26 @@ C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp
               V=char,
               E=int
           ]
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(297): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::vector<Edge<V,E> *,std::allocator<Edge<V,E> *>> AdjacencyMatrixGraph<V,E>::edgesFrom(Vertex<V> *)"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(340): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::vector<Edge<V,E> *,std::allocator<Edge<V,E> *>> AdjacencyMatrixGraph<V,E>::edgesFrom(Vertex<V> *)"
           with
           [
               V=char,
               E=int
           ]
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(198,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(186): message : во время компиляции функции-члена класс шаблон "void AdjacencyMatrixGraph<char,int>::removeVertex(Vertex<V> *)"
+          with
+          [
+              V=char
+          ]
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(205,27): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(124,31): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(103): message : во время компиляции функции-члена класс шаблон "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
           with
           [
               V=char
           ]
-C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(284): message : выполняется компиляция ссылки на экземпляр шаблон функции "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
+C:\Users\Пользователь\source\repos\DSA Homework 3\DSA Homework 3.cpp(327): message : выполняется компиляция ссылки на экземпляр шаблон функции "Vertex<V> *AdjacencyMatrixGraph<V,int>::addVertex(V)"
           with
           [
               V=char

@@ -74,7 +74,7 @@ public:
 };
 
 
-template <typename V, typename E> class AdjacencyMatrixGraph /*: public GraphADT<V, E>*/{
+template <typename V, typename E> class AdjacencyMatrixGraph : public GraphADT<V, E>{
 public:
     list<Vertex<V>> vertices;
     list<Edge<V, E>> edges;
@@ -255,6 +255,45 @@ public:
         return nullptr;
     }
 
+
+    vector<Vertex<V>*> findVertices(V value) {
+
+        vector<Vertex<V>*> collection;
+
+        Vertex<V>* ptr = firstVertex_ptr.next;
+
+        while (ptr != lastVertex_ptr.myself) {
+            if (ptr->value == value) {
+                collection.push_back(ptr->myself);
+            }
+            ptr = ptr->next;
+        }
+
+        return collection;
+
+    }
+
+    
+    bool hasEdge(Vertex<V>* from, Vertex<V>* to) {
+        return adjMatr[from->index][to->index];
+    }
+
+
+    Edge<V, E>* findEdge(V from_value, V to_value) {
+        vector<Vertex<V>*> from = findVertices(from_value);
+        vector<Vertex<V>*> to = findVertices(to_value);
+
+        for (int i = 0; i < from.size(); ++i) {
+            for (int j = 0; j < to.size(); ++j) {
+                if (hasEdge(from[i], to[j])) {
+                    return adjMatr[from[i]->index][to[j]->index];
+                }
+            }
+        }
+
+        return nullptr;
+    }
+
 };
 
 
@@ -274,6 +313,10 @@ template<typename T> void printVector(vector<T>& vector) {
     }
     cout << "\n\n";
 }
+
+//bool kek(int* a) {
+//    return a;
+//}
 
 int main() {
 
@@ -300,12 +343,17 @@ int main() {
     //printVector(Ato);
 
     //graph.removeVertex(a);
-    //graph.removeEdge(ac);
+    cout << graph.findEdge('A', 'C')->weight << endl;
+    graph.removeEdge(ac);
+    cout << graph.findEdge('A', 'C') << endl;
+
     //graph.removeEdge(ab);
     //printAdjMatrix(graph);
 
-    cout << c << "\n" << graph.findVertex('C') << "\n\n";
-    cout << graph.findVertex('D') << endl;
+    /*cout << c << "\n" << graph.findVertex('C') << "\n\n";
+    cout << graph.findVertex('D') << endl;*/
+
+    //cout << kek(nullptr) << endl;
 
     return 0;
 
