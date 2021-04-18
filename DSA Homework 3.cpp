@@ -212,6 +212,33 @@ public:
         delete(vertex);
     }
 
+
+    vector<Edge<V, E>*> edgesFrom(Vertex<V>* vertex) {
+        int index = vertex->index;
+        vector<Edge<V, E>*> collection;
+
+        for (int i = 0; i < adjMatr.size(); ++i) {
+            if (adjMatr[index][i] != nullptr) {
+                collection.push_back(adjMatr[index][i]);
+            }
+        }
+
+        return collection;
+    }
+
+    vector<Edge<V, E>*> edgesTo(Vertex<V>* vertex) {
+        int index = vertex->index;
+        vector<Edge<V, E>*> collection;
+
+        for (int i = 0; i < adjMatr.size(); ++i) {
+            if (adjMatr[i][index] != nullptr) {
+                collection.push_back(adjMatr[i][index]);
+            }
+        }
+
+        return collection;
+    }
+
 };
 
 
@@ -223,6 +250,13 @@ void printAdjMatrix(AdjacencyMatrixGraph<char, int>& graph) {
         cout << endl;
     }
     cout << endl;
+}
+
+template<typename T> void printVector(vector<T>& vector) {
+    for (int i = 0; i < vector.size(); ++i) {
+        cout << vector[i] << ' ';
+    }
+    cout << "\n\n";
 }
 
 int main() {
@@ -244,14 +278,15 @@ int main() {
 
     printAdjMatrix(graph);
 
-    graph.removeVertex(a);
+    vector<Edge<char, int>*> Afrom = graph.edgesFrom(a);
+    printVector(Afrom);
+    vector<Edge<char, int>*> Ato = graph.edgesTo(a);
+    printVector(Ato);
 
+    //graph.removeVertex(a);
     //graph.removeEdge(ac);
-    //printAdjMatrix(graph);
-
     //graph.removeEdge(ab);
-
-    printAdjMatrix(graph);
+    //printAdjMatrix(graph);
 
     return 0;
 
