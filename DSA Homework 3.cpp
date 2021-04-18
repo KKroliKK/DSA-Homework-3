@@ -75,7 +75,7 @@ public:
 
 
 template <typename V, typename E> class AdjacencyMatrixGraph /*: public GraphADT<V, E>*/{
-
+public:
     list<Vertex<V>> vertices;
     list<Edge<V, E>> edges;
     vector<vector<Edge<V, E>*>> adjMatr;
@@ -183,21 +183,75 @@ public:
         delete(edge);
     }
 
+    void removeVertex(Vertex<V>* vertex) {
+
+        Vertex<V>* previous = vertex->previous;
+        Vertex<V>* next = vertex->next;
+
+        previous->next = next;
+        next->previous = previous;
+
+        emptyIndices.push_back(vertex->index);
+
+        int index = vertex->index;
+
+        for (int i = 0; i < adjMatr.size(); ++i) {
+            if (adjMatr[index][i] != nullptr) {
+                removeEdge(adjMatr[index][i]);
+                adjMatr[index][i] = nullptr;
+            }
+        }
+
+        for (int i = 0; i < adjMatr.size(); ++i) {
+            if (adjMatr[i][index] != nullptr) {
+                removeEdge(adjMatr[i][index]);
+                adjMatr[i][index] = nullptr;
+            }
+        }
+
+        delete(vertex);
+    }
 
 };
 
 
+void printAdjMatrix(AdjacencyMatrixGraph<char, int>& graph) {
+    for (int i = 0; i < graph.adjMatr.size(); ++i) {
+        for (int j = 0; j < graph.adjMatr.size(); ++j) {
+            cout << graph.adjMatr[i][j] << ' ';
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
 
 int main() {
 
     AdjacencyMatrixGraph<char, int> graph;
+
+    //cout << graph.adjMatr.size() << ' ' << graph.adjMatr[graph.adjMatr.size() - 1].size() << endl;
 
     Vertex<char>* a = graph.addVertex('A');
     Vertex<char>* b = graph.addVertex('B');
     Vertex<char>* c = graph.addVertex('C');
 
     Edge<char, int>* ab = graph.addEdge(a, b, 1);
-    graph.removeEdge(ab);
+    Edge<char, int>* ba = graph.addEdge(b, a, 7);
+    Edge<char, int>* ca = graph.addEdge(c, a, 2);
+    Edge<char, int>* ac = graph.addEdge(a, c, 3);
+    Edge<char, int>* bc = graph.addEdge(b, c, 10);
+    Edge<char, int>* cb = graph.addEdge(c, b, 6);
+
+    printAdjMatrix(graph);
+
+    graph.removeVertex(a);
+
+    //graph.removeEdge(ac);
+    //printAdjMatrix(graph);
+
+    //graph.removeEdge(ab);
+
+    printAdjMatrix(graph);
 
     return 0;
 
