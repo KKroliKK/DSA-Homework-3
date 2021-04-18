@@ -239,6 +239,22 @@ public:
         return collection;
     }
 
+
+    Vertex<V>* findVertex(V value) {
+        Vertex<V>* ptr = firstVertex_ptr.next;
+
+        while (ptr != lastVertex_ptr.myself) {
+            if (ptr->value == value) {
+                return ptr->myself;
+            }
+            else {
+                ptr = ptr->next;
+            }
+        }
+        
+        return nullptr;
+    }
+
 };
 
 
@@ -279,14 +295,17 @@ int main() {
     printAdjMatrix(graph);
 
     vector<Edge<char, int>*> Afrom = graph.edgesFrom(a);
-    printVector(Afrom);
+    //printVector(Afrom);
     vector<Edge<char, int>*> Ato = graph.edgesTo(a);
-    printVector(Ato);
+    //printVector(Ato);
 
     //graph.removeVertex(a);
     //graph.removeEdge(ac);
     //graph.removeEdge(ab);
     //printAdjMatrix(graph);
+
+    cout << c << "\n" << graph.findVertex('C') << "\n\n";
+    cout << graph.findVertex('D') << endl;
 
     return 0;
 
